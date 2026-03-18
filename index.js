@@ -6,6 +6,8 @@ const PORT = process.env.PORT;
 //cria a instância principal da sua aplicação Express.
 const app = express();
 
+const conn = require("./database/conn");
+
 // Registra o Handlebars como motor de renderização de views.
 app.engine("handlebars", exphbs.engine());
 app.set("view engine", "handlebars");
@@ -22,6 +24,11 @@ app.use(express.json());
 //serve arquivos estáticos direto da pasta (public/)
 app.use(express.static("public"));
 
-app.listen(PORT, () => {
-  console.log("Server is running!");
-});
+conn
+  .sync()
+  .then(() => {
+    app.listen(PORT, () => {
+      console.log("Server is running!");
+    });
+  })
+  .catch((err) => console.log(err));
