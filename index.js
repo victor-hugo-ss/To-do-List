@@ -5,6 +5,8 @@ const PORT = process.env.PORT;
 
 const conn = require("./database/conn");
 const User = require("./models/User");
+const Address = require("./models/Address");
+
 //cria a instância principal da sua aplicação Express.
 const app = express();
 
