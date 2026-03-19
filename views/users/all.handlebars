@@ -1,1 +1,54 @@
-<h1>Usuários</h1>
+<!-- views/users/all.handlebars -->
+<div class="page-header">
+  <h1 class="page-title">Usuários</h1>
+  <a href="/users/add" class="btn btn-primary">+ Novo usuário</a>
+</div>
+
+{{#if users.length}}
+  <div class="card table-wrapper">
+    <table>
+      <thead>
+        <tr>
+          <th>Nome</th>
+          <th>Ocupação</th>
+          <th>Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each users}}
+          <tr>
+            <td>{{this.name}}</td>
+            <td class="text-secondary">{{this.occupation}}</td>
+            <td>
+              <div class="table-actions">
+                <a
+                  href="/users/{{this.id}}"
+                  class="btn btn-sm btn-ghost"
+                >Ver</a>
+                <a
+                  href="/users/{{this.id}}/edit"
+                  class="btn btn-sm btn-outline-accent"
+                >Editar</a>
+                <form
+                  action="/users/{{this.id}}/delete"
+                  method="POST"
+                  onsubmit="return confirm('Tem certeza que deseja excluir este usuário?')"
+                >
+                  <button
+                    type="submit"
+                    class="btn btn-sm btn-danger"
+                  >Excluir</button>
+                </form>
+              </div>
+            </td>
+          </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  </div>
+{{else}}
+  <div class="empty-state">
+    <p>Nenhum usuário cadastrado ainda.</p>
+    <a href="/users/add" class="btn btn-primary">Cadastrar primeiro usuário</a>
+  </div>
+{{/if}}

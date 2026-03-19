@@ -43,16 +43,19 @@ nav {
   border-bottom: 1px solid var(--border);
   display: flex;
   align-items: center;
-  padding: 0 2rem;
+  width: 100%; /* ← ocupa largura total */
+  align-self: stretch;
   position: sticky;
   top: 0;
   z-index: 100;
+  /* sem padding aqui */
 }
 
 .nav-inner {
   width: 100%;
   max-width: 1100px;
   margin: 0 auto;
+  padding: 0 2rem; /* ← padding só aqui */
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -115,6 +118,12 @@ main {
   margin: 0 auto;
   padding: 2.5rem 2rem;
   animation: fadeIn 0.25s ease;
+  align-self: center;
+  box-sizing: border-box;
+}
+
+form {
+  width: 100%;
 }
 
 @keyframes fadeIn {
@@ -130,6 +139,8 @@ main {
 
 /* ── FOOTER ── */
 footer {
+  width: 100%; /* ← ocupa largura total */
+  align-self: stretch;
   height: var(--footer-height);
   border-top: 1px solid var(--border);
   background: var(--surface);
@@ -160,24 +171,6 @@ footer {
   letter-spacing: 0.04em;
 }
 
-/* ── RESPONSIVE ── */
-@media (max-width: 600px) {
-  nav,
-  main,
-  .footer-inner {
-    padding-left: 1.25rem;
-    padding-right: 1.25rem;
-  }
-
-  .nav-links {
-    gap: 0;
-  }
-
-  .footer-version {
-    display: none;
-  }
-}
-
 /* ── PAGE HEADER ── */
 .page-header {
   display: flex;
@@ -199,6 +192,8 @@ footer {
   border-radius: 10px;
   padding: 1.75rem;
   margin-bottom: 1rem;
+  max-width: 100%; /* ← nunca ultrapassa o main */
+  overflow: hidden; /* ← corta qualquer overflow interno */
 }
 
 .section-header {
@@ -226,16 +221,21 @@ footer {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 1rem;
+  width: 100%;
+  max-width: 100%; /* ← nunca ultrapassa o card */
 }
 
 .field {
   display: flex;
   flex-direction: column;
   gap: 0.4rem;
+  min-width: 0; /* ← evita overflow no grid */
 }
+
 .field--full {
   grid-column: 1 / -1;
 }
+
 .field--small {
   max-width: 140px;
 }
@@ -262,6 +262,7 @@ select {
     box-shadow 0.15s;
   outline: none;
   width: 100%;
+  min-width: 0; /* ← evita overflow no grid */
 }
 
 input:focus,
@@ -346,10 +347,111 @@ input::placeholder {
 
 /* ── RESPONSIVE ── */
 @media (max-width: 600px) {
+  nav,
+  main,
+  .footer-inner {
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
+
+  .nav-links {
+    gap: 0;
+  }
+
+  .footer-version {
+    display: none;
+  }
+
   .form-grid {
     grid-template-columns: 1fr;
   }
+
   .field--small {
     max-width: 100%;
   }
+}
+
+/* ── TABLE ── */
+.table-wrapper {
+  padding: 0;
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+thead {
+  border-bottom: 1px solid var(--border);
+}
+
+th {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0.875rem 1.5rem;
+  text-align: left;
+}
+
+td {
+  padding: 1rem 1.5rem;
+  font-size: 0.9rem;
+  color: var(--text-primary);
+  border-bottom: 1px solid var(--border);
+}
+
+tbody tr:last-child td {
+  border-bottom: none;
+}
+
+tbody tr:hover {
+  background: var(--bg);
+}
+
+.text-secondary {
+  color: var(--text-secondary);
+}
+
+.table-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.table-actions form {
+  width: auto;
+}
+
+/* ── BUTTON SIZES ── */
+.btn-sm {
+  padding: 0.3rem 0.75rem;
+  font-size: 0.8rem;
+}
+
+.btn-outline-accent {
+  background: transparent;
+  border: 1px solid var(--accent);
+  color: var(--accent);
+}
+
+.btn-outline-accent:hover {
+  background: var(--accent-light);
+}
+
+/* ── EMPTY STATE ── */
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding: 4rem 2rem;
+  text-align: center;
+  color: var(--text-secondary);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
 }
