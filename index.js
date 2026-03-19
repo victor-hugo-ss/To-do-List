@@ -4,8 +4,11 @@ require("dotenv").config();
 const PORT = process.env.PORT;
 
 const conn = require("./database/conn");
+
 const User = require("./models/User");
 const Address = require("./models/Address");
+
+const usersRoutes = require("./routes/usersRoutes");
 
 //cria a instância principal da sua aplicação Express.
 const app = express();
@@ -25,6 +28,8 @@ app.use(
 app.use(express.json());
 //serve arquivos estáticos direto da pasta (public/)
 app.use(express.static("public"));
+
+app.use("/users", usersRoutes);
 
 conn
   .sync()
