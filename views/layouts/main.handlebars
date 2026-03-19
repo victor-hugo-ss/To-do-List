@@ -1,11 +1,41 @@
-<html lang="en">
+<html lang="pt-BR">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="style.css" />
-    <title>To Do List</title>
+    <title>{{title}} | UserManager</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/css/style.css" />
   </head>
   <body>
-    {{{body}}}
+
+    <nav>
+      <div class="nav-inner">
+        <a href="/users" class="nav-brand">
+          <span class="nav-brand-dot"></span>
+          usermanager
+        </a>
+        <ul class="nav-links">
+          <li><a href="/users" class="active">Usuários</a></li>
+          <li><a href="/">Cadastrar</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <main>
+      {{{body}}}
+    </main>
+
+    <footer>
+      <div class="footer-inner">
+        <span class="footer-copy">&copy; {{currentYear}} UserManager</span>
+        <span class="footer-version">v1.0.0</span>
+      </div>
+    </footer>
+
   </body>
 </html>
