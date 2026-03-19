@@ -3,10 +3,10 @@ const exphbs = require("express-handlebars");
 require("dotenv").config();
 const PORT = process.env.PORT;
 
+const conn = require("./database/conn");
+const User = require("./models/User");
 //cria a instância principal da sua aplicação Express.
 const app = express();
-
-const conn = require("./database/conn");
 
 // Registra o Handlebars como motor de renderização de views.
 app.engine("handlebars", exphbs.engine());
